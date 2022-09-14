@@ -2,27 +2,24 @@ getwd()
 setwd('/Users/ttanaka/Desktop/coursera/R A-Z Udemy')
 getwd()
 movies<-read.csv("P4-Movie-Ratings.csv")
-colnames(movies)<-c("Film","Genre","CriticRating","AutienceRating","BudgetMillions","Year")
+colnames(movies)<-c("Film","Genre","CriticRating","AudienceRating","BudgetMillions","Year")
 movies$Year<-factor(movies$Year)
 library(ggplot2)
-q<-ggplot(data=movies,aes(x=CriticRating,y=AutienceRating, color=Genre,size=BudgetMillions))
+r<-ggplot(data=movies,aes(x=CriticRating,y=AudienceRating))
+r+geom_point()
 
-#add geom layer
-q+geom_point()
+#add color
+#there are two days to add color
 
-#override aes
-#example 1
-q+geom_point(aes(size=CriticRating))
+#Example 1
+#1: mapping (we we have done so far)
+r+geom_point(aes(color=Genre))
+#2: setting
+r+geom_point(color="Red")
 
-#example 2
-q+geom_point(aes(color=BudgetMillions))
+#Example 2
+#1: mapping
+r+geom_point(aes(size=BudgetMillions))
 
-#example 3
-q+geom_point(aes(x=BudgetMillions))
-
-#example 4
-q+geom_line(size=0.6)+geom_point()
-
-#showiing original (q remains the same)
-q+geom_point()
-
+#2: setting
+r+geom_point(size=1)
